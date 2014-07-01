@@ -12,10 +12,11 @@
 
 class User < ActiveRecord::Base
   attr_reader :password
-  
+
   validates :email, :password_digest, presence: true
+  validates :email, uniqueness: true
   validates :password, length: {minimum: 6, allow_nil: true}
-  
+
   has_many :member_circles, through: :circle_memberships, source: :circle
   has_many :circle_memberships
   has_many :circles
@@ -33,13 +34,13 @@ class User < ActiveRecord::Base
       nil
     end
   end
-  
+
   def password=(password)
     return unless password.present?
     @password = password
     self.password_digest = BCrypt::Password.create(password)
   end
-  
+
   def reset_session_token!
     self.session_token = SecureRandom.urlsafe_base64
     self.save!
