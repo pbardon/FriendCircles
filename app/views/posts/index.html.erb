@@ -1,0 +1,7 @@
+<h1>All Your Posts Are Belong To Here</h1>
+
+<ul>
+<% current_user.posts.each do |post| %>
+<li><%=link_to post.body, post_url(post)  %>
+  <% end %>
+</ul>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FriendCircles</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  
+<% if logged_in? %>
+  <h3>Hello, <%= current_user.email %> </h3>
+  <%= button_to "Log Out", session_url, method: :delete %>
+<% end %>
+  
+<%= flash[:errors].join("<br>").html_safe if flash[:errors] %>
+<%= yield %>
+
+</body>
+</html>

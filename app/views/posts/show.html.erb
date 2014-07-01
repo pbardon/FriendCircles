@@ -1,0 +1,7 @@
+<h1> Your Post: </h1>
+
+<%= @post.body %>
+<% @post.links.each do |link|%>
+<br>
+<%= link.title %> <%=link_to link.url, link.url %>
+<% end %>

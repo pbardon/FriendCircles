@@ -1,0 +1,49 @@
+<h1>Enter your post</h1>
+
+<form action="<%= user_posts_url %>" method="POST" >
+  <%= auth_token %>
+  <label>Put your post here
+    <input type="text" 
+        name='post[body]' 
+        value='<%= @post.body %>'>
+  </label>
+  
+  <input type='hidden' name='post[user_id]' value='<%= current_user.id %>'>
+  <br>
+  
+  <label> Link #1 Title:
+    <input type="text" name="link[1][title]">
+  </label>
+  <br>
+  <label> Link #1 URL:
+    <input type="text" name="link[1][url]">
+  </label>
+  <br>
+  
+  <label> Link #2 Title:
+    <input type="text" name="link[2][title]">
+  </label>
+  <br>
+  <label> Link #2 URL:
+    <input type="text" name="link[2][url]">
+  </label>
+  <br>
+  
+  <label> Link #3 Title:
+    <input type="text" name="link[3][title]">
+  </label>
+  <br>
+  <label> Link #3 URL:
+    <input type="text" name="link[3][url]">
+  </label>
+  <br>  
+
+    <% current_user.circles.each do |circle| %>
+    <label>
+    <input type="checkbox" name="post[circles][]" value = "<%= circle.id %>">
+    <%= circle.name %>
+    </label>
+    <br>
+    <% end  %>
+  <p><input type="submit" value="Submit Post"></p>
+</form>

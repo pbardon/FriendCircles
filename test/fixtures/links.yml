@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: links
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)      not null
+#  url        :string(255)      not null
+#  post_id    :integer          not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  url: MyString
+  post_id: 1
+
+two:
+  title: MyString
+  url: MyString
+  post_id: 1

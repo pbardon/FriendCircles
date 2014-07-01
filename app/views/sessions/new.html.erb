@@ -1,0 +1,17 @@
+<form action="<%= session_url %>" method="POST" >
+  <%= auth_token %>
+ 
+    <label>Email
+      <input type="text" 
+      name="user[email]" 
+      value='<%= @user.email  %>'>
+    </label>
+    <p>
+    <label>Password
+      <input type ='password'
+      name = 'user[password]'>
+    </label>
+  
+  
+  <p><input type="submit" value="Sign In"></p>
+</form>

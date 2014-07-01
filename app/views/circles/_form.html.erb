@@ -1,0 +1,35 @@
+<% if action == :edit %>
+  <% form_action = circle_url(@circle.id) %>
+<% else %> 
+  <% form_action = user_circles_url(params[:user_id]) %>
+<% end  %>
+
+<form action="<%= form_action %>" method="post" >
+  <%= auth_token %> 
+  
+  <% if action == :edit %>
+    <input type = 'hidden' name = '_method' value ='PATCH'>
+  <% end %>
+  
+  <label> Enter Circle Name:
+  <input 
+        type="text" 
+        name="circle[name]" 
+        value="<%= @circle.name %>" >
+  </label>
+   <br>
+  <input type="hidden" name="circle[user_ids][]" value=""> 
+  <% User.all.each do |user| %>
+    <label>
+      <input <%= 'checked' if @circle.members.include?(user) %>
+          type="checkbox" 
+          name="circle[member_ids][]" 
+          value="<%= user.id %>" >
+          <%= user.email %>
+    </label>
+    <br>
+  <% end  %>
+
+
+  <p><input type="submit" value="Create Circle"></p>
+</form>

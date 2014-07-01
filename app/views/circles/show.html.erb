@@ -1,0 +1,19 @@
+<h1> Circle Name: <%= @circle.name %> </h1>
+
+
+<h3>Circle Members:</h3>
+<ul>
+<% @circle.members.each do |member| %>
+  <li> <%= member.email %></li>
+<% end %>
+</ul>
+
+<ul>
+  
+<% @circle.posts.each do |post| %>
+<li><%=link_to post_url(post),  post.body %>
+  <% end %>
+
+</ul>
+  <p>
+<%= link_to "Edit Circle", edit_circle_url(@circle) %>
