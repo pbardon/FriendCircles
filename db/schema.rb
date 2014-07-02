@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140630214556) do
+ActiveRecord::Schema.define(version: 20140702211156) do
 
   create_table "circle_memberships", force: true do |t|
     t.integer  "user_id",    null: false
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20140630214556) do
     t.integer  "user_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"

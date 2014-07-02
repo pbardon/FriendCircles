@@ -1,7 +1,13 @@
-<h1> Your Post: </h1>
+<h1> <%= @post.title.capitalize %></h1>
 
 <%= @post.body %>
 <% @post.links.each do |link|%>
-<br>
-<%= link.title %> <%=link_to link.url, link.url %>
+<p>
+<%= link.title %> <%=link_to "#{link.url}", "http://#{link.url}" %>
 <% end %>
+
+<h4> Shared With: </h4>
+
+<% @post.circles.each do |circle| %>
+<%= circle.name %>
+<% end  %>

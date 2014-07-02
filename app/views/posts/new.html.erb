@@ -2,15 +2,22 @@
 
 <form action="<%= user_posts_url %>" method="POST" >
   <%= auth_token %>
+
+  <label>Post Title:
+    <input type="string"
+        name='post[title]'
+        value='<%= @post.title %>'>
+  </label>
+  <p>
+
   <label>Put your post here
-    <input type="text" 
-        name='post[body]' 
+    <input type="text"
+        name='post[body]'
         value='<%= @post.body %>'>
   </label>
-  
-  <input type='hidden' name='post[user_id]' value='<%= current_user.id %>'>
+
   <br>
-  
+
   <label> Link #1 Title:
     <input type="text" name="link[1][title]">
   </label>
@@ -19,7 +26,7 @@
     <input type="text" name="link[1][url]">
   </label>
   <br>
-  
+
   <label> Link #2 Title:
     <input type="text" name="link[2][title]">
   </label>
@@ -28,7 +35,7 @@
     <input type="text" name="link[2][url]">
   </label>
   <br>
-  
+
   <label> Link #3 Title:
     <input type="text" name="link[3][title]">
   </label>
@@ -36,11 +43,11 @@
   <label> Link #3 URL:
     <input type="text" name="link[3][url]">
   </label>
-  <br>  
+  <br>
 
     <% current_user.circles.each do |circle| %>
     <label>
-    <input type="checkbox" name="post[circles][]" value = "<%= circle.id %>">
+    <input type="checkbox" name="post[circle_ids][]" value = "<%= circle.id %>">
     <%= circle.name %>
     </label>
     <br>

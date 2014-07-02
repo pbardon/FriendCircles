@@ -13,6 +13,4 @@
 class PostShare < ActiveRecord::Base
   belongs_to :post
   belongs_to :circle
- #
- #  has_many :viewers, through: :circle, source: :members
 end

@@ -9,9 +9,9 @@
 </ul>
 
 <ul>
-  
+
 <% @circle.posts.each do |post| %>
-<li><%=link_to post_url(post),  post.body %>
+<li><%=link_to post.body,  post_url(post.id) %>
   <% end %>
 
 </ul>

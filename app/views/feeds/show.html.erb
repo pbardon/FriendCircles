@@ -1,3 +1,13 @@
-<% @feed.each do |feed| %>
-<%= feed.body %>
-<% end %>
+<h2> Your Feed: </h2>
+
+<p>
+
+<ul>
+  <% @feed.each do |feed| %>
+    <br>
+      <li><h4><%= link_to feed.title, post_url(feed) %></h4>
+        <p> <%= feed.body %></p>
+      </li>
+    </br>
+  <% end %>
+</ul>

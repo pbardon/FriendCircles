@@ -12,6 +12,7 @@
 
 class User < ActiveRecord::Base
   attr_reader :password
+  before_save :ensure_password_digest, :ensure_session_token
 
   validates :email, :password_digest, presence: true
   validates :email, uniqueness: true
@@ -46,4 +47,15 @@ class User < ActiveRecord::Base
     self.save!
     self.session_token
   end
+
+  private
+
+  def ensure_password_digest
+    self.password_digest ||= BCrypt::Password.create(@password)
+  end
+
+  def ensure_session_token
+    self.session_token ||= SecureRandom.urlsafe_base64
+  end
+
 end
