@@ -3,11 +3,26 @@
 <p>
 
 <ul>
-  <% @feed.each do |feed| %>
+  <% @feed.each do |post| %>
     <br>
-      <li><h4><%= link_to feed.title, post_url(feed) %></h4>
-        <p> <%= feed.body %></p>
+      <li><% unless already_voted?(post) %>
+            <%= button_to '^', post_upvote_url(post.id), method: :update%>
+            <%= button_to 'v', post_downvote_url(post.id), method: :update%>
+          <% end  %>
+          <%= post.upvotes.count %> | <%= post.downvotes.count %>
+        <h4><%= link_to post.title, post_url(post) %></h4>
+        <p> <%= post.body %></p>
+        <label>Links:
+          <ul> <% post.links.each do |link| %>
+            <li> <%= link.title %>: <%= link_to link.url, "http://#{link.url}"  %> </li>
+               <% end %>
+          </ul>
+
+        </label>
+
+        <p> by <%= User.find(post.user_id).email %> <p>
       </li>
+_________________________________________________________________________________________________
     </br>
   <% end %>
 </ul>

@@ -12,13 +12,14 @@
 class Post < ActiveRecord::Base
 
   belongs_to :user
-  
+
   has_many :post_shares
   has_many :circles, through: :post_shares, source: :circle
   has_many :links, inverse_of: :post
-  #
-  # has_many :viewers, through: :post_shares, source: :viewers
-  
+
+  has_many(:upvotes)
+  has_many(:downvotes)
+
   validates :body, presence: true
   validates :user_id, presence: true
 end

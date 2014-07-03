@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702211156) do
+ActiveRecord::Schema.define(version: 20140702231654) do
 
   create_table "circle_memberships", force: true do |t|
     t.integer  "user_id",    null: false
@@ -32,6 +32,13 @@ ActiveRecord::Schema.define(version: 20140702211156) do
 
   add_index "circles", ["user_id"], name: "index_circles_on_user_id"
 
+  create_table "downvotes", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "post_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "links", force: true do |t|
     t.string   "title",      null: false
     t.string   "url",        null: false
@@ -50,14 +57,22 @@ ActiveRecord::Schema.define(version: 20140702211156) do
   end
 
   create_table "posts", force: true do |t|
-    t.text     "body",       null: false
-    t.integer  "user_id",    null: false
+    t.text     "body",                   null: false
+    t.integer  "user_id",                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
+    t.integer  "score",      default: 0
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+
+  create_table "upvotes", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "post_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",           null: false

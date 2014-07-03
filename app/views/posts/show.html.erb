@@ -2,8 +2,8 @@
 
 <%= @post.body %>
 <% @post.links.each do |link|%>
-<p>
-<%= link.title %> <%=link_to "#{link.url}", "http://#{link.url}" %>
+  <p>
+  <%= link.title %> <%=link_to "#{link.url}", "http://#{link.url}" %>
 <% end %>
 
 <h4> Shared With: </h4>

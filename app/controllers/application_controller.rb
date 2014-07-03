@@ -2,9 +2,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :logged_in?, :current_user
+  helper_method :logged_in?, :current_user, :already_voted?
 
   private
+
+  def already_voted?(post)
+    post.upvotes.any?{ |vote| vote.user_id == current_user.id} ||
+    post.downvotes.any?{ |vote| vote.user_id == current_user.id}
+  end
 
   def sign_in(user)
     @user = User.find_by_credentials(user.email, user.password)

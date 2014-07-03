@@ -6,7 +6,7 @@ class CirclesController < ApplicationController
   def create
     @circle = current_user.circles.build(circle_params)
     if @circle.save
-      build_memberships(circle_params[:member_ids], @circle)
+      # build_memberships(circle_params[:member_ids], @circle)
       redirect_to user_circles_url(current_user)
     else
       flash[:errors] = @circle.errors.full_messages
