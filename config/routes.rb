@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     post 'posts/downvotes', to: "posts#downvote", as: :downvote
   end
 
-  resources :users, only: [:new] do
+  resources :users, only: [:new, :create] do
     resources :circles, only: [:new, :create, :index, :show]
     resources :posts, only: [:new, :create, :index]
   end
